@@ -11,12 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Estudiante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "estudianteId")
 	private int id;
 
 	@Column(nullable = false)
@@ -34,9 +35,8 @@ public class Estudiante {
 	@Column(nullable = false)
 	private int num_libreta;
 
-	@ManyToMany(mappedBy = "estudiantes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinTable(EstudianteCarrera)
-	List<Carrera> carreras = new ArrayList<>();
+	@OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	List<Estudiante_Carrera> carreras = new ArrayList<>();
 
 	public Estudiante() {
 		super();
@@ -110,11 +110,11 @@ public class Estudiante {
 		this.num_libreta = num_libreta;
 	}
 
-	public List<Carrera> getCarreras() {
+	public List<Estudiante_Carrera> getCarreras() {
 		return carreras;
 	}
 
-	public void setCarreras(List<Carrera> carreras) {
+	public void setCarreras(List<Estudiante_Carrera> carreras) {
 		this.carreras = carreras;
 	}
 

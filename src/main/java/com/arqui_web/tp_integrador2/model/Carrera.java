@@ -9,18 +9,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Carrera {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "carreraId")
 	private int id;
 	@Column(nullable = false)
 	private String nombre;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Estudiante> estudiantes;
+	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Estudiante_Carrera> estudiantes;
 
 	public Carrera() {
 		super();
@@ -47,4 +48,14 @@ public class Carrera {
 	public String toString() {
 		return "Carrera [id=" + id + ", nombre=" + nombre + "]";
 	}
+
+	public List<Estudiante_Carrera> getEstudiantes() {
+		return estudiantes;
+	}
+
+	public void setEstudiantes(List<Estudiante_Carrera> estudiantes) {
+		this.estudiantes = estudiantes;
+	}
+	
+	
 }

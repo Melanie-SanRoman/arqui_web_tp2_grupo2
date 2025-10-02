@@ -9,20 +9,23 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EstudianteCarreraId implements Serializable {
 	@Column
-	private int estudiante_id;
+	private int estudianteId;
 	@Column
-	private int carrera_id;
-	
-	public int getEstudiante_id() {
-		return estudiante_id;
+	private int carreraId;
+
+	public int getEstudianteId() {
+		return estudianteId;
 	}
-	public void setEstudiante_id(int estudiante_id) {
-		this.estudiante_id = estudiante_id;
+
+	public void setEstudianteId(int estudianteId) {
+		this.estudianteId = estudianteId;
 	}
-	public int getCarrera_id() {
-		return carrera_id;
+
+	public int getCarreraId() {
+		return carreraId;
 	}
-	public void setCarrera_id(int carrera_id) {
-		this.carrera_id = carrera_id;
+
+	public void setCarreraId(int carreraId) {
+		this.carreraId = carreraId;
 	}
 }
