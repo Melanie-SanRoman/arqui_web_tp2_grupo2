@@ -3,6 +3,7 @@ package com.arqui_web.tp_integrador2.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO;
 import com.arqui_web.tp_integrador2.model.Carrera;
 import com.arqui_web.tp_integrador2.model.Estudiante;
 import com.arqui_web.tp_integrador2.model.EstudianteCarreraId;
@@ -30,7 +31,7 @@ public class CarreraService {
 		if (cRepo.findById(c.getId()) != null) { 
 			if (!estaMatriculado(e, c)) {
 				// crear y persistir instancia de tabla intermedia
-				Estudiante_Carrera ec = new Estudiante_Carrera(e, c, fechaInscripcion, false);
+				Estudiante_Carrera ec = new Estudiante_Carrera(e, c, fechaInscripcion);
 				ec.setId(new EstudianteCarreraId(e.getId(), c.getId()));
 				ecRepo.insert(ec); 
 
@@ -60,5 +61,9 @@ public class CarreraService {
 
 	public Carrera recuperarCarreraPorId(Integer id) {
 		return cRepo.findById(id);
+	}
+	
+	public List<ReporteCarrerasDTO> generarReporte(){
+		return null;
 	}
 }

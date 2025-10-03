@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO;
 import com.arqui_web.tp_integrador2.model.Carrera;
 import com.arqui_web.tp_integrador2.repositories.CarreraRepository;
 
@@ -82,5 +83,11 @@ public class CarreraRepositoryImplDerby implements CarreraRepository {
 				"SELECT c FROM Carrera c JOIN c.estudiantes ec GROUP BY c ORDER BY COUNT(ec) DESC", Carrera.class);
 
 		return query.getResultList();
+	}
+
+	@Override
+	public List<ReporteCarrerasDTO> getReporteCarreras() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

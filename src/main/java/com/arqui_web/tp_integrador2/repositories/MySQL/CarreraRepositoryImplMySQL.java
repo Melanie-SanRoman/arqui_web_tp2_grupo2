@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO;
 import com.arqui_web.tp_integrador2.model.Carrera;
 import com.arqui_web.tp_integrador2.repositories.CarreraRepository;
 
@@ -84,4 +85,9 @@ public class CarreraRepositoryImplMySQL implements CarreraRepository {
 		return query.getResultList();
 	}
 
+	@Override
+	public List<ReporteCarrerasDTO> getReporteCarreras() {
+		TypedQuery<ReporteCarrerasDTO> query = em.createQuery("SELECT new ReporteCarrerasDTO()", ReporteCarrerasDTO.class);
+		return null;
+	}
 }

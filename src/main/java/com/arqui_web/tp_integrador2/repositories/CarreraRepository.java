@@ -2,6 +2,7 @@ package com.arqui_web.tp_integrador2.repositories;
 
 import java.util.List;
 
+import com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO;
 import com.arqui_web.tp_integrador2.model.Carrera;
 
 public interface CarreraRepository {
@@ -16,4 +17,6 @@ public interface CarreraRepository {
 	void update(Carrera carrera);
 
 	List<Carrera> getCarrerasMayorInscripciones();
+	
+	List<ReporteCarrerasDTO> getReporteCarreras();
 }

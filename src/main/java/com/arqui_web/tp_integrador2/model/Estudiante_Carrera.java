@@ -27,25 +27,25 @@ public class Estudiante_Carrera {
 
 	@Column(nullable = false)
 	private LocalDate fecha_ingreso;
-	@Column(nullable = false)
-	private boolean graduado;
+	@Column(nullable = true)
+	private LocalDate fecha_egreso;
 
 	public Estudiante_Carrera() {
 		super();
 	}
 
-	public Estudiante_Carrera(LocalDate fecha_ingreso, boolean graduado) {
+	public Estudiante_Carrera(LocalDate fecha_ingreso, LocalDate fecha_egreso) {
 		super();
 		this.fecha_ingreso = fecha_ingreso;
-		this.graduado = graduado;
+		this.fecha_egreso = fecha_egreso;
 	}
 
-	public Estudiante_Carrera(Estudiante estudiante, Carrera carrera, LocalDate fecha_ingreso, boolean graduado) {
+	public Estudiante_Carrera(Estudiante estudiante, Carrera carrera, LocalDate fecha_ingreso) {
 		super();
 		this.estudiante = estudiante;
 		this.carrera = carrera;
 		this.fecha_ingreso = fecha_ingreso;
-		this.graduado = graduado;
+		this.fecha_egreso = null;
 		this.id = new EstudianteCarreraId(estudiante.getId(), carrera.getId());
 	}
 
@@ -61,12 +61,12 @@ public class Estudiante_Carrera {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
-	public boolean isGraduado() {
-		return graduado;
+	public LocalDate getFecha_egreso() {
+		return fecha_egreso;
 	}
 
-	public void setGraduado(boolean graduado) {
-		this.graduado = graduado;
+	public void setFecha_egreso(LocalDate fecha_egreso) {
+		this.fecha_egreso = fecha_egreso;
 	}
 
 	public EstudianteCarreraId getId() {
