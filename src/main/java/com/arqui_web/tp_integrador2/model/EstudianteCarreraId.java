@@ -1,6 +1,7 @@
 package com.arqui_web.tp_integrador2.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -9,23 +10,48 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EstudianteCarreraId implements Serializable {
 	@Column
-	private int estudianteId;
+	private Integer estudianteId;
 	@Column
-	private int carreraId;
+	private Integer carreraId;
+	
+	public EstudianteCarreraId() {
+		super();
+	}
 
-	public int getEstudianteId() {
+	public EstudianteCarreraId(Integer estudianteId, Integer carreraId) {
+		super();
+		this.estudianteId = estudianteId;
+		this.carreraId = carreraId;
+	}
+
+	public Integer getEstudianteId() {
 		return estudianteId;
 	}
 
-	public void setEstudianteId(int estudianteId) {
+	public void setEstudianteId(Integer estudianteId) {
 		this.estudianteId = estudianteId;
 	}
 
-	public int getCarreraId() {
+	public Integer getCarreraId() {
 		return carreraId;
 	}
 
-	public void setCarreraId(int carreraId) {
+	public void setCarreraId(Integer carreraId) {
 		this.carreraId = carreraId;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof EstudianteCarreraId))
+			return false;
+		EstudianteCarreraId that = (EstudianteCarreraId) o;
+		return Objects.equals(estudianteId, that.estudianteId) && Objects.equals(carreraId, that.carreraId);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(estudianteId, carreraId);
 	}
 }

@@ -40,6 +40,19 @@ public class Estudiante_Carrera {
 		this.graduado = graduado;
 	}
 
+	public Estudiante_Carrera(Estudiante estudiante, Carrera carrera, LocalDate fecha_ingreso, boolean graduado) {
+		super();
+		this.estudiante = estudiante;
+		this.carrera = carrera;
+		this.fecha_ingreso = fecha_ingreso;
+		this.graduado = graduado;
+		this.id = new EstudianteCarreraId(estudiante.getId(), carrera.getId());
+	}
+
+	public void setId(EstudianteCarreraId id) {
+		this.id = id;
+	}
+
 	public LocalDate getFecha_ingreso() {
 		return fecha_ingreso;
 	}

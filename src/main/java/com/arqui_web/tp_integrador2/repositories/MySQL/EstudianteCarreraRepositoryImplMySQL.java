@@ -33,7 +33,7 @@ public class EstudianteCarreraRepositoryImplMySQL implements EstudianteCarreraRe
 	}
 
 	@Override
-	public Estudiante_Carrera findById(int id) {
+	public Estudiante_Carrera findById(Integer id) {
 		Estudiante_Carrera ec = em.find(Estudiante_Carrera.class, id);
 		return ec;
 	}   

@@ -7,11 +7,13 @@ import com.arqui_web.tp_integrador2.model.Carrera;
 public interface CarreraRepository {
 	void insert(Carrera carrera);
 
-	Carrera findById(int id);
+	Carrera findById(Integer id);
 
 	List<Carrera> findAll();
 
 	void delete(Carrera carrera);
 
 	void update(Carrera carrera);
+
+	List<Carrera> getCarrerasMayorInscripciones();
 }

@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import com.arqui_web.tp_integrador2.model.Carrera;
 import com.arqui_web.tp_integrador2.model.Estudiante;
+import com.arqui_web.tp_integrador2.model.TipoGenero;
 import com.arqui_web.tp_integrador2.repositories.EstudianteRepository;
 
 public class EstudianteRepositoryImplMySQL implements EstudianteRepository {
@@ -29,11 +31,10 @@ public class EstudianteRepositoryImplMySQL implements EstudianteRepository {
 				tx.rollback();
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
-	public Estudiante findById(int id) {
+	public Estudiante findById(Integer id) {
 		Estudiante e = em.find(Estudiante.class, id);
 		return e;
 	}
@@ -76,4 +77,50 @@ public class EstudianteRepositoryImplMySQL implements EstudianteRepository {
 		}
 	}
 
+	@Override
+	public Estudiante findByNumLibreta(int numLibreta) {
+		TypedQuery<Estudiante> query = em
+				.createQuery("SELECT e FROM Estudiante e WHERE e.num_libreta = :libreta", Estudiante.class)
+				.setParameter("libreta", numLibreta);
+
+		return query.getSingleResult();
+	}
+
+	@Override
+	public List<Estudiante> getEstudiantesOrderByApellido() {
+		TypedQuery<Estudiante> query = em.createQuery("SELECT e FROM Estudiante e ORDER BY e.apellido ASC",
+				Estudiante.class);
+
+		return query.getResultList();
+	}
+
+	@Override
+	public Estudiante getEstudianteByNumLibreta(int num_libreta) {
+		try {
+			TypedQuery<Estudiante> query = em
+					.createQuery("SELECT e FROM Estudiante e WHERE e.num_libreta = :numLibreta", Estudiante.class);
+			query.setParameter("numLibreta", num_libreta);
+			return query.getSingleResult();
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Estudiante> getEstudiantesGenero(TipoGenero genero) {
+		TypedQuery<Estudiante> query = em
+				.createQuery("SELECT e FROM Estudiante e WHERE e.genero = :tipoGenero", Estudiante.class)
+				.setParameter("tipoGenero", genero);
+
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Estudiante> getEstudiantesByCarrera(Carrera carrera) {
+		TypedQuery<Estudiante> query = em.createQuery(
+				"SELECT e FROM Estudiante e JOIN Estudiante_Carrera ec ON e.estudianteId = ec.estudianteId WHERE ec.carreraId = :carreraId",
+				Estudiante.class).setParameter("carreraId", carrera.getId());
+
+		return query.getResultList();
+	}
 }

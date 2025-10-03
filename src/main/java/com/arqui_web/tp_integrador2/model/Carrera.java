@@ -1,5 +1,6 @@
 package com.arqui_web.tp_integrador2.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,12 +17,12 @@ public class Carrera {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "carreraId")
-	private int id;
+	private Integer id;
 	@Column(nullable = false)
 	private String nombre;
 
 	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Estudiante_Carrera> estudiantes;
+	private List<Estudiante_Carrera> estudiantes = new ArrayList<>();
 
 	public Carrera() {
 		super();
@@ -40,7 +41,7 @@ public class Carrera {
 		this.nombre = nombre;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

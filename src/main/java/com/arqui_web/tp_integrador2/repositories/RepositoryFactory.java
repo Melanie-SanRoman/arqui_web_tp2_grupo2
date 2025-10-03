@@ -1,10 +1,16 @@
 package com.arqui_web.tp_integrador2.repositories;
 
+import javax.persistence.EntityManager;
+
+import com.arqui_web.tp_integrador2.repositories.MySQL.CarreraRepositoryImplMySQL;
+import com.arqui_web.tp_integrador2.repositories.MySQL.EstudianteCarreraRepositoryImplMySQL;
+import com.arqui_web.tp_integrador2.repositories.MySQL.EstudianteRepositoryImplMySQL;
 import com.arqui_web.tp_integrador2.service.ConnectionFactory;
 
 public class RepositoryFactory {
 
 	private static RepositoryFactory instance = new RepositoryFactory();
+	private EntityManager em;
 
 	private RepositoryFactory() {
 	};
@@ -18,12 +24,37 @@ public class RepositoryFactory {
 		return instance;
 	}
 
-	public static EstudianteRepository getRepository(String type) {
+	public EstudianteRepository getEstudianteRepository(String type) {
 		switch (type) {
 		case ConnectionFactory.MYSQL:
-			return new EstudianteRepositoryMySQL();
+			em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
+			return new EstudianteRepositoryImplMySQL(em);
 		case ConnectionFactory.DERBY:
-			return new EstudianteRepositoryPostgres();
+//			return new EstudianteRepositoryImplDerby();
+		default:
+			throw new IllegalArgumentException("Tipo de BD no soportado: " + type);
+		}
+	}
+
+	public CarreraRepository getCarreraRepository(String type) {
+		switch (type) {
+		case ConnectionFactory.MYSQL:
+			em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
+			return new CarreraRepositoryImplMySQL(em);
+		case ConnectionFactory.DERBY:
+//			return new CarreraRepositoryImplDerby();
+		default:
+			throw new IllegalArgumentException("Tipo de BD no soportado: " + type);
+		}
+	}
+
+	public EstudianteCarreraRepository getEstudianteCarreraRepository(String type) {
+		switch (type) {
+		case ConnectionFactory.MYSQL:
+			em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
+			return new EstudianteCarreraRepositoryImplMySQL(em);
+		case ConnectionFactory.DERBY:
+//			return new EstudianteCarreraRepositoryImplDerby();
 		default:
 			throw new IllegalArgumentException("Tipo de BD no soportado: " + type);
 		}

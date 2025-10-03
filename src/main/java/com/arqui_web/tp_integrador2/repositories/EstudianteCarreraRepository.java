@@ -7,7 +7,7 @@ import com.arqui_web.tp_integrador2.model.Estudiante_Carrera;
 public interface EstudianteCarreraRepository {
 	void insert(Estudiante_Carrera estudiante_carrera);
 
-	Estudiante_Carrera findById(int id);
+	Estudiante_Carrera findById(Integer id);
 
 	List<Estudiante_Carrera> findAll();
 

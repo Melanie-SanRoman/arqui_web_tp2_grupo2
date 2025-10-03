@@ -10,7 +10,7 @@ import com.arqui_web.tp_integrador2.model.Carrera;
 import com.arqui_web.tp_integrador2.repositories.CarreraRepository;
 
 public class CarreraRepositoryImplMySQL implements CarreraRepository {
-	
+
 	private EntityManager em;
 
 	public CarreraRepositoryImplMySQL(EntityManager em) {
@@ -33,7 +33,7 @@ public class CarreraRepositoryImplMySQL implements CarreraRepository {
 	}
 
 	@Override
-	public Carrera findById(int id) {
+	public Carrera findById(Integer id) {
 		Carrera c = em.find(Carrera.class, id);
 		return c;
 	}
@@ -74,6 +74,14 @@ public class CarreraRepositoryImplMySQL implements CarreraRepository {
 				tx.rollback();
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Carrera> getCarrerasMayorInscripciones() {
+		TypedQuery<Carrera> query = em.createQuery(
+				"SELECT c FROM Carrera c JOIN c.estudiantes ec GROUP BY c ORDER BY COUNT(ec) DESC", Carrera.class);
+
+		return query.getResultList();
 	}
 
 }

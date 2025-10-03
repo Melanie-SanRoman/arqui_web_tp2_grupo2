@@ -18,7 +18,7 @@ public class Estudiante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "estudianteId")
-	private int id;
+	private Integer id;
 
 	@Column(nullable = false)
 	private String name;
@@ -118,7 +118,7 @@ public class Estudiante {
 		this.carreras = carreras;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
