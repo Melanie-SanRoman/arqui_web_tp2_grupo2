@@ -5,14 +5,14 @@ import java.time.Year;
 
 public class ReporteCarrerasDTO {
 	private String nombreCarrera;
-	private int incriptos;
+	private int inscriptos;
 	private int egresados;
 	private Year año;
 
-	public ReporteCarrerasDTO(String nombreCarrera, int incriptos, int egresados, Year año) {
+	public ReporteCarrerasDTO(String nombreCarrera, int inscriptos, int egresados, Year año) {
 		super();
 		this.nombreCarrera = nombreCarrera;
-		this.incriptos = incriptos;
+		this.inscriptos = inscriptos;
 		this.egresados = egresados;
 		this.año = año;
 	}
@@ -25,12 +25,12 @@ public class ReporteCarrerasDTO {
 		this.nombreCarrera = nombreCarrera;
 	}
 
-	public int getIncriptos() {
-		return incriptos;
+	public int getInscriptos() {
+		return inscriptos;
 	}
 
-	public void setIncriptos(int incriptos) {
-		this.incriptos = incriptos;
+	public void setInscriptos(int inscriptos) {
+		this.inscriptos = inscriptos;
 	}
 
 	public int getEgresados() {
