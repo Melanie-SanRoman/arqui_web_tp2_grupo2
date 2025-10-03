@@ -1,4 +1,4 @@
-package com.arqui_web.tp_integrador2.repositories.MySQL;
+package com.arqui_web.tp_integrador2.repositories.Derby;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import javax.persistence.TypedQuery;
 import com.arqui_web.tp_integrador2.model.Estudiante_Carrera;
 import com.arqui_web.tp_integrador2.repositories.EstudianteCarreraRepository;
 
-public class EstudianteCarreraRepositoryImplMySQL implements EstudianteCarreraRepository {
+public class EstudianteCarreraRepositoryImplDerby implements EstudianteCarreraRepository {
 
 	private EntityManager em;
 
-	public EstudianteCarreraRepositoryImplMySQL(EntityManager em) {
+	public EstudianteCarreraRepositoryImplDerby(EntityManager em) {
 		super();
 		this.em = em;
 	}

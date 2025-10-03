@@ -27,7 +27,7 @@ public class RepositoryFactory {
 	public EstudianteRepository getEstudianteRepository(String type) {
 		switch (type) {
 		case ConnectionFactory.MYSQL:
-			em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
+			em = ConnectionFactory.getInstance().connection();
 			return new EstudianteRepositoryImplMySQL(em);
 		case ConnectionFactory.DERBY:
 //			return new EstudianteRepositoryImplDerby();
@@ -39,7 +39,7 @@ public class RepositoryFactory {
 	public CarreraRepository getCarreraRepository(String type) {
 		switch (type) {
 		case ConnectionFactory.MYSQL:
-			em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
+			em = ConnectionFactory.getInstance().connection();
 			return new CarreraRepositoryImplMySQL(em);
 		case ConnectionFactory.DERBY:
 //			return new CarreraRepositoryImplDerby();
@@ -51,7 +51,7 @@ public class RepositoryFactory {
 	public EstudianteCarreraRepository getEstudianteCarreraRepository(String type) {
 		switch (type) {
 		case ConnectionFactory.MYSQL:
-			em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
+			em = ConnectionFactory.getInstance().connection();
 			return new EstudianteCarreraRepositoryImplMySQL(em);
 		case ConnectionFactory.DERBY:
 //			return new EstudianteCarreraRepositoryImplDerby();

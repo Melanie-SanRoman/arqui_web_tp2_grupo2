@@ -16,8 +16,6 @@ public interface EstudianteRepository {
 	void delete(Estudiante estudiante);
 
 	void update(Estudiante estudiante);
-	
-	Estudiante findByNumLibreta(int numLibreta);
 
 	List<Estudiante> getEstudiantesOrderByApellido();
 

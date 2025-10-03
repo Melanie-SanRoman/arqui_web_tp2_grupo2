@@ -41,40 +41,45 @@ public class App {
 		carreraService.darDeAlta(medicina);
 		carreraService.darDeAlta(derecho);
 
-		 // =========================
-		 // 3) MATRICULAR ESTUDIANTES
-		 // =========================
-		carreraService.matricularEstudiante(juan, sistemas, LocalDate.of(2019, 3, 1));
-		carreraService.matricularEstudiante(maria, sistemas, LocalDate.of(2018, 3, 1));
-		carreraService.matricularEstudiante(ana, derecho, LocalDate.of(2020, 3, 1));
+		// =========================
+		// 3) MATRICULAR ESTUDIANTES
+		// =========================
+		carreraService.matricularEstudiante(estudianteService.buscarPorNumLibreta(1001),
+				carreraService.recuperarCarreraPorId(1), LocalDate.of(2019, 3, 1));
+
+		carreraService.matricularEstudiante(estudianteService.buscarPorNumLibreta(1002),
+				carreraService.recuperarCarreraPorId(2), LocalDate.of(2018, 3, 1));
+		carreraService.matricularEstudiante(estudianteService.buscarPorNumLibreta(1003),
+				carreraService.recuperarCarreraPorId(3), LocalDate.of(2020, 3, 1));
 
 		// Juan además se anota en medicina
-		carreraService.matricularEstudiante(juan, medicina, LocalDate.of(2020, 3, 1));
+		carreraService.matricularEstudiante(estudianteService.buscarPorNumLibreta(1001),
+				carreraService.recuperarCarreraPorId(2), LocalDate.of(2020, 3, 1));
 
 		// =========================
 		// 4) CONSULTAS
 		// =========================
 
-//		// a) Listar estudiantes por apellido
-//		System.out.println("\n=== Estudiantes por apellido ===");
-//		estudianteService.listarPorNombre().forEach(e -> System.out.println(e.getApellido() + ", " + e.getName()));
-//
-//		// b) Buscar estudiante por libreta
-//		System.out.println("\n=== Buscar por número de libreta 1002 ===");
-//		Estudiante buscado = estudianteService.buscarPorNumLibreta(1002);
-//		System.out.println("Encontrado: " + buscado.getName() + " " + buscado.getApellido());
-//
-//		// c) Listar estudiantes por género
-//		System.out.println("\n=== Estudiantes femeninas ===");
-//		estudianteService.listarPorGenero(TipoGenero.FEMENINO).forEach(e -> System.out.println(e.getName()));
-//
-//		// d) Estudiantes en carrera y ciudad
-//		System.out.println("\n=== Estudiantes en Sistemas de Tandil ===");
-//		estudianteService.listarPorCarreraYCiudad(sistemas, "Tandil").forEach(e -> System.out.println(e.getName()));
-//
-//		// e) Carreras con más inscriptos
-//		System.out.println("\n=== Carreras ordenadas por inscripciones ===");
-//		carreraService.listarPorCantInscriptos()
-//				.forEach(c -> System.out.println(c.getNombre() + " (Inscriptos: " + c.getEstudiantes().size() + ")"));
+		// a) Listar estudiantes por apellido
+		System.out.println("\n=== Estudiantes por apellido ===");
+		estudianteService.listarPorNombre().forEach(e -> System.out.println(e.getApellido() + ", " + e.getName()));
+
+		// b) Buscar estudiante por libreta
+		System.out.println("\n=== Buscar por número de libreta 1002 ===");
+		Estudiante buscado = estudianteService.buscarPorNumLibreta(1002);
+		System.out.println("Encontrado: " + buscado.getName() + " " + buscado.getApellido());
+
+		// c) Listar estudiantes por género
+		System.out.println("\n=== Estudiantes femeninas ===");
+		estudianteService.listarPorGenero(TipoGenero.FEMENINO).forEach(e -> System.out.println(e.getName()));
+
+		// d) Estudiantes en carrera y ciudad
+		System.out.println("\n=== Estudiantes en Sistemas de Tandil ===");
+		estudianteService.listarPorCarreraYCiudad(sistemas, "Tandil").forEach(e -> System.out.println(e.getName()));
+
+		// e) Carreras con más inscriptos
+		System.out.println("\n=== Carreras ordenadas por inscripciones ===");
+		carreraService.listarPorCantInscriptos()
+				.forEach(c -> System.out.println(c.getNombre() + " (Inscriptos: " + c.getEstudiantes().size() + ")"));
 	}
 }

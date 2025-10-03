@@ -15,13 +15,13 @@ public class EstudianteService {
 	public EstudianteService(String type) {
 		eRepo = RepositoryFactory.getInstance().getEstudianteRepository(type);
 	}
-	
+
 	public void darDeAlta(Estudiante e) {
-	    Estudiante existente = eRepo.getEstudianteByNumLibreta(e.getNum_libreta());
-	    if (existente != null) {
-	        throw new IllegalArgumentException("El estudiante ya se encuentra registrado.");
-	    }
-	    eRepo.insert(e);
+		if (e.getId() == null) {
+			eRepo.insert(e);
+		} else {
+			throw new IllegalArgumentException("El estudiante ya se encuentra registrado.");
+		}
 	}
 
 	public List<Estudiante> listarPorNombre() {

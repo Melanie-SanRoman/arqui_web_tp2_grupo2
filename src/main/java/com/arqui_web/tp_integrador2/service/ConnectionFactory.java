@@ -36,9 +36,4 @@ public class ConnectionFactory {
 	public EntityManager connection() {
 		return this.em;
 	}
-
-	public void disconnect() {
-		this.emf.close();
-		this.em.close();
-	}
 }

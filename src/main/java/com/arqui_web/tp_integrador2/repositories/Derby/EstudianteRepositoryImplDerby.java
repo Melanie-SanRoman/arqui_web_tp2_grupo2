@@ -1,4 +1,4 @@
-package com.arqui_web.tp_integrador2.repositories.MySQL;
+package com.arqui_web.tp_integrador2.repositories.Derby;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import com.arqui_web.tp_integrador2.model.Estudiante;
 import com.arqui_web.tp_integrador2.model.TipoGenero;
 import com.arqui_web.tp_integrador2.repositories.EstudianteRepository;
 
-public class EstudianteRepositoryImplMySQL implements EstudianteRepository {
+public class EstudianteRepositoryImplDerby implements EstudianteRepository {
 
 	private EntityManager em;
 
-	public EstudianteRepositoryImplMySQL(EntityManager em) {
+	public EstudianteRepositoryImplDerby(EntityManager em) {
 		this.em = em;
 	}
 

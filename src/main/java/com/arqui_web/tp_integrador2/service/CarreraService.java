@@ -27,12 +27,12 @@ public class CarreraService {
 
 	public void matricularEstudiante(Estudiante e, Carrera c, LocalDate fechaInscripcion) {
 
-		if (cRepo.findById(c.getId()) != null) {
+		if (cRepo.findById(c.getId()) != null) { 
 			if (!estaMatriculado(e, c)) {
 				// crear y persistir instancia de tabla intermedia
 				Estudiante_Carrera ec = new Estudiante_Carrera(e, c, fechaInscripcion, false);
 				ec.setId(new EstudianteCarreraId(e.getId(), c.getId()));
-				ecRepo.insert(ec);
+				ecRepo.insert(ec); 
 
 				// mantener constancia en lista de entidades
 				e.getCarreras().add(ec);
@@ -56,5 +56,9 @@ public class CarreraService {
 
 	public List<Carrera> listarPorCantInscriptos() {
 		return cRepo.getCarrerasMayorInscripciones();
+	}
+
+	public Carrera recuperarCarreraPorId(Integer id) {
+		return cRepo.findById(id);
 	}
 }
