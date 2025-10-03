@@ -2,17 +2,14 @@
 package com.arqui_web.tp_integrador2.dto;
 
 import java.time.Year;
-import java.util.List;
-
-import com.arqui_web.tp_integrador2.model.Estudiante;
 
 public class ReporteCarrerasDTO {
 	private String nombreCarrera;
-	private List<Estudiante> incriptos;
-	private List<Estudiante> egresados;
+	private int incriptos;
+	private int egresados;
 	private Year año;
 
-	public ReporteCarrerasDTO(String nombreCarrera, List<Estudiante> incriptos, List<Estudiante> egresados, Year año) {
+	public ReporteCarrerasDTO(String nombreCarrera, int incriptos, int egresados, Year año) {
 		super();
 		this.nombreCarrera = nombreCarrera;
 		this.incriptos = incriptos;
@@ -28,19 +25,19 @@ public class ReporteCarrerasDTO {
 		this.nombreCarrera = nombreCarrera;
 	}
 
-	public List<Estudiante> getIncriptos() {
+	public int getIncriptos() {
 		return incriptos;
 	}
 
-	public void setIncriptos(List<Estudiante> incriptos) {
+	public void setIncriptos(int incriptos) {
 		this.incriptos = incriptos;
 	}
 
-	public List<Estudiante> getEgresados() {
+	public int getEgresados() {
 		return egresados;
 	}
 
-	public void setEgresados(List<Estudiante> egresados) {
+	public void setEgresados(int egresados) {
 		this.egresados = egresados;
 	}
 
