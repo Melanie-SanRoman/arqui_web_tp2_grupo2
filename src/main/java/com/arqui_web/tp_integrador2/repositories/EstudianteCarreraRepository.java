@@ -1,17 +1,22 @@
 package com.arqui_web.tp_integrador2.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import com.arqui_web.tp_integrador2.model.Estudiante_Carrera;
+import com.arqui_web.tp_integrador2.model.Carrera;
+import com.arqui_web.tp_integrador2.model.Estudiante;
+import com.arqui_web.tp_integrador2.model.EstudianteCarrera;
 
 public interface EstudianteCarreraRepository {
-	void insert(Estudiante_Carrera estudiante_carrera);
+	void insert(EstudianteCarrera estudiante_carrera);
 
-	Estudiante_Carrera findById(Integer id);
+	EstudianteCarrera findById(Integer id);
 
-	List<Estudiante_Carrera> findAll();
+	List<EstudianteCarrera> findAll();
 
-	void delete(Estudiante_Carrera estudiante_carrera);
+	void delete(EstudianteCarrera estudiante_carrera);
 
-	void update(Estudiante_Carrera estudiante_carrera);
+	void update(EstudianteCarrera estudiante_carrera);
+
+	void saveEgreso(Estudiante estudiante, Carrera carrera, LocalDate fecha_egreso);
 }

@@ -36,7 +36,7 @@ public class Estudiante {
 	private int num_libreta;
 
 	@OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	List<Estudiante_Carrera> carreras = new ArrayList<>();
+	List<EstudianteCarrera> carreras = new ArrayList<>();
 
 	public Estudiante() {
 		super();
@@ -110,11 +110,11 @@ public class Estudiante {
 		this.num_libreta = num_libreta;
 	}
 
-	public List<Estudiante_Carrera> getCarreras() {
+	public List<EstudianteCarrera> getCarreras() {
 		return carreras;
 	}
 
-	public void setCarreras(List<Estudiante_Carrera> carreras) {
+	public void setCarreras(List<EstudianteCarrera> carreras) {
 		this.carreras = carreras;
 	}
 

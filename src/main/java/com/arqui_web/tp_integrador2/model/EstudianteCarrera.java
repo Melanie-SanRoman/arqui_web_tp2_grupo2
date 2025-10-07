@@ -9,9 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 @Entity
-public class Estudiante_Carrera {
+@Table(name = "estudiante_carrera")
+public class EstudianteCarrera {
 	@EmbeddedId
 	private EstudianteCarreraId id;
 
@@ -30,17 +32,17 @@ public class Estudiante_Carrera {
 	@Column(nullable = true)
 	private LocalDate fecha_egreso;
 
-	public Estudiante_Carrera() {
+	public EstudianteCarrera() {
 		super();
 	}
 
-	public Estudiante_Carrera(LocalDate fecha_ingreso, LocalDate fecha_egreso) {
+	public EstudianteCarrera(LocalDate fecha_ingreso, LocalDate fecha_egreso) {
 		super();
 		this.fecha_ingreso = fecha_ingreso;
 		this.fecha_egreso = fecha_egreso;
 	}
 
-	public Estudiante_Carrera(Estudiante estudiante, Carrera carrera, LocalDate fecha_ingreso) {
+	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, LocalDate fecha_ingreso) {
 		super();
 		this.estudiante = estudiante;
 		this.carrera = carrera;

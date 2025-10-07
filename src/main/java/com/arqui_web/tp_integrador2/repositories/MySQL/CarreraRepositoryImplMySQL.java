@@ -85,9 +85,28 @@ public class CarreraRepositoryImplMySQL implements CarreraRepository {
 		return query.getResultList();
 	}
 
+	// Consulta 1 - Inscriptos
 	@Override
-	public List<ReporteCarrerasDTO> getReporteCarreras() {
-		TypedQuery<ReporteCarrerasDTO> query = em.createQuery("SELECT new ReporteCarrerasDTO()", ReporteCarrerasDTO.class);
-		return null;
+	public List<ReporteCarrerasDTO> getInscriptosPorCarrera() {
+		TypedQuery<ReporteCarrerasDTO> query = em
+				.createQuery("SELECT new com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO("
+						+ "c.nombre, COUNT(ec), 0L, FUNCTION('YEAR', ec.fecha_ingreso)) " + "FROM EstudianteCarrera ec "
+						+ "JOIN ec.carrera c " + "WHERE ec.fecha_ingreso IS NOT NULL "
+						+ "GROUP BY c.nombre, FUNCTION('YEAR', ec.fecha_ingreso)", ReporteCarrerasDTO.class);
+
+		return query.getResultList();
+	}
+
+	// Consulta 2 - Graduados
+
+	@Override
+	public List<ReporteCarrerasDTO> getGraduadosPorCarrera() {
+		TypedQuery<ReporteCarrerasDTO> query = em
+				.createQuery("SELECT new com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO("
+						+ "c.nombre, 0L, COUNT(ec), FUNCTION('YEAR', ec.fecha_egreso)) " + "FROM EstudianteCarrera ec "
+						+ "JOIN ec.carrera c " + "WHERE ec.fecha_egreso IS NOT NULL "
+						+ "GROUP BY c.nombre, FUNCTION('YEAR', ec.fecha_egreso)", ReporteCarrerasDTO.class);
+
+		return query.getResultList();
 	}
 }

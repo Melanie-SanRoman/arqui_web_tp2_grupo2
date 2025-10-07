@@ -109,7 +109,7 @@ public class EstudianteRepositoryImplMySQL implements EstudianteRepository {
 	@Override
 	public List<Estudiante> getEstudiantesByCarrera(Carrera carrera) {
 		TypedQuery<Estudiante> query = em
-				.createQuery("SELECT ec.estudiante FROM Estudiante_Carrera ec WHERE ec.carrera = :carrera",
+				.createQuery("SELECT ec.estudiante FROM EstudianteCarrera ec WHERE ec.carrera = :carrera",
 						Estudiante.class)
 				.setParameter("carrera", carrera);
 

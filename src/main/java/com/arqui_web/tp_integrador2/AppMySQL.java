@@ -1,7 +1,9 @@
 package com.arqui_web.tp_integrador2;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import com.arqui_web.tp_integrador2.dto.ReporteCarrerasDTO;
 import com.arqui_web.tp_integrador2.model.Carrera;
 import com.arqui_web.tp_integrador2.model.Estudiante;
 import com.arqui_web.tp_integrador2.model.TipoGenero;
@@ -9,10 +11,12 @@ import com.arqui_web.tp_integrador2.service.CarreraService;
 import com.arqui_web.tp_integrador2.service.ConnectionFactory;
 import com.arqui_web.tp_integrador2.service.EstudianteService;
 
-public class App {
+public class AppMySQL {
 	public static void main(String[] args) {
+		// Crear conexion a MySQL
 		ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
 
+		// Instanciar servicios
 		EstudianteService estudianteService = new EstudianteService(ConnectionFactory.MYSQL);
 		CarreraService carreraService = new CarreraService(ConnectionFactory.MYSQL);
 
@@ -55,6 +59,9 @@ public class App {
 		// Juan además se anota en medicina
 		carreraService.matricularEstudiante(estudianteService.buscarPorNumLibreta(1001),
 				carreraService.recuperarCarreraPorId(2), LocalDate.of(2020, 3, 1));
+		
+		// Maria se graduo en 2023
+		estudianteService.registrarEgreso(maria, medicina, LocalDate.of(2022, 7, 14));
 
 		// =========================
 		// 4) CONSULTAS
@@ -75,11 +82,21 @@ public class App {
 
 		// d) Estudiantes en carrera y ciudad
 		System.out.println("\n=== Estudiantes en Sistemas de Tandil ===");
-		estudianteService.listarPorCarreraYCiudad(sistemas, "Tandil").forEach(e -> System.out.println(e.getName()));
+		estudianteService.listarPorCarreraYCiudad(carreraService.recuperarCarreraPorId(1), "Tandil")
+				.forEach(e -> System.out.println(e.getName()));
 
 		// e) Carreras con más inscriptos
 		System.out.println("\n=== Carreras ordenadas por inscripciones ===");
 		carreraService.listarPorCantInscriptos()
 				.forEach(c -> System.out.println(c.getNombre() + " (Inscriptos: " + c.getEstudiantes().size() + ")"));
+
+		// Reporte de carreras:
+		List<ReporteCarrerasDTO> reporte = carreraService.getReporte();
+
+		System.out.println("Reporte de carreras (inscriptos y egresados por año):");
+		for (ReporteCarrerasDTO r : reporte) {
+			System.out.printf("%-25s | Año: %-5d | Inscriptos: %-4d | Egresados: %-4d%n", r.getNombreCarrera(),
+					r.getAño(), r.getInscriptos(), r.getEgresados());
+		}
 	}
 }

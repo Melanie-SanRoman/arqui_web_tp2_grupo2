@@ -1,15 +1,13 @@
 
 package com.arqui_web.tp_integrador2.dto;
 
-import java.time.Year;
-
 public class ReporteCarrerasDTO {
 	private String nombreCarrera;
-	private int inscriptos;
-	private int egresados;
-	private Year año;
+	private long inscriptos;
+	private long egresados;
+	private int año;
 
-	public ReporteCarrerasDTO(String nombreCarrera, int inscriptos, int egresados, Year año) {
+	public ReporteCarrerasDTO(String nombreCarrera, long inscriptos, long egresados, int año) {
 		super();
 		this.nombreCarrera = nombreCarrera;
 		this.inscriptos = inscriptos;
@@ -25,27 +23,27 @@ public class ReporteCarrerasDTO {
 		this.nombreCarrera = nombreCarrera;
 	}
 
-	public int getInscriptos() {
+	public long getInscriptos() {
 		return inscriptos;
 	}
 
-	public void setInscriptos(int inscriptos) {
+	public void setInscriptos(long inscriptos) {
 		this.inscriptos = inscriptos;
 	}
 
-	public int getEgresados() {
+	public long getEgresados() {
 		return egresados;
 	}
 
-	public void setEgresados(int egresados) {
+	public void setEgresados(long egresados) {
 		this.egresados = egresados;
 	}
 
-	public Year getAño() {
+	public int getAño() {
 		return año;
 	}
 
-	public void setAño(Year año) {
+	public void setAño(int año) {
 		this.año = año;
 	}
 }

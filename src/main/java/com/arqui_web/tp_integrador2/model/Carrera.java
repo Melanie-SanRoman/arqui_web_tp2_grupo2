@@ -22,7 +22,7 @@ public class Carrera {
 	private String nombre;
 
 	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Estudiante_Carrera> estudiantes = new ArrayList<>();
+	private List<EstudianteCarrera> estudiantes = new ArrayList<>();
 
 	public Carrera() {
 		super();
@@ -50,11 +50,11 @@ public class Carrera {
 		return "Carrera [id=" + id + ", nombre=" + nombre + "]";
 	}
 
-	public List<Estudiante_Carrera> getEstudiantes() {
+	public List<EstudianteCarrera> getEstudiantes() {
 		return estudiantes;
 	}
 
-	public void setEstudiantes(List<Estudiante_Carrera> estudiantes) {
+	public void setEstudiantes(List<EstudianteCarrera> estudiantes) {
 		this.estudiantes = estudiantes;
 	}
 	
